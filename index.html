@@ -164,20 +164,26 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <form>
+            <form name="Romualdus-contact-form">
               <div class="mb-3">
-                <label for="name" class="form-label">Name Lengkap</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" />
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" autocomplete="on" required="Isi Terlebih Dahulu" />
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" />
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" autocomplete="on" required="Isi Terlebih Dahulu" />
               </div>
               <div class="mb-3">
                 <label for="pesan" class="form-label">Pesan</label>
-                <textarea class="form-control" id="pesan" rows="3"></textarea>
+                <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
               </div>
-              <button type="submit" class="btn btn-success">Kirim</button>
+              <div class="alert alert-success d-none my-alert" role="alert">Terkirim</div>
+
+              <button type="submit" class="btn btn-success btn-kirim">Kirim</button>
+
+              <div class="spinner-border text-success d-none btn-loading" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </form>
           </div>
         </div>
@@ -198,5 +204,34 @@
     </footer>
     <!-- footer-end -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwCSf8FAPVQDb1oABERc9IeLCSq8b_Zids9E0po9AeMdciZbWOt_O_S4PUwXdqYHsoU/exec';
+      const form = document.forms['Romualdus-contact-form'];
+      const btnKirim = document.querySelector('.btn-kirim');
+      const btnLoading = document.querySelector('.btn-loading');
+      const btnMyalert = document.querySelector('.my-alert');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // ketika tombol submit di klik
+        // munculkan tombol loading
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then((response) => {
+            // tampilkan tombol kirim hilangkan tombol loading
+            btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+            // tampilkan alert
+            btnMyalert.classList.toggle('d-none');
+            // tampilkan reset
+            form.reset();
+            console.log('Success!', response);
+          })
+          .catch((error) => console.log('Error!', error.message));
+      });
+    </script>
   </body>
 </html>
