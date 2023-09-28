@@ -44,7 +44,7 @@
     <div class="jumbotron text-center">
       <img src="../img/foto.jpg" alt="" class="rounded-circle" />
       <h1 class="display-6">Romualdus Samuel.S</h1>
-      <p class="lead">Student | Web Developer</p>
+      <p class="lead"></p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="rgb(45, 45, 45)" fill-opacity="1" d="M0,32L120,48C240,64,480,96,720,96C960,96,1200,64,1320,48L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
       </svg>
@@ -297,7 +297,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script>
       gsap.registerPlugin(TextPlugin);
-      gsap.to('.lead', { duration: 2, delay: 1, text: 'Student | Web Developer' });
+      gsap.to('.lead', {duration:1.5, delay:1, text:'Student | Web Developer'});
       gsap.from('.jumbotron img', { duration: 1, rotateY: 360, opacity: 0 });
       gsap.from('.navbar', { duration: 1.5, y: '-100%', opacity: 0, ease: 'bounce' });
       gsap.from('.display-6', { duration: 1, x: -50, opacity: 0, delay: 0.5, ease: 'back' });
